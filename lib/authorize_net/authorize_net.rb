@@ -33,9 +33,10 @@ module AuthorizeNet
       end
     end
     
-    # Coverts a value received from Authorize.Net into a BigDecimal.
+    # Converts a value received from Authorize.Net into a BigDecimal.
     def value_to_decimal(value)
-      BigDecimal.new(value)
+      value = 0 if value == '' # Ruby 2.4+ does not accept ""
+      BigDecimal(value)
     end
     
     # Converts a BigDecimal (or Float) into an Authorize.Net float value string. If float isn't
